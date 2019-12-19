@@ -1,0 +1,19 @@
+<h1>ブログ一覧</h1>
+
+<table>
+  <tr>
+    <th>投稿者</th>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>画像</th>
+  </tr>
+
+<% @favorites.each do |favorite| %>
+  <tr>
+    <td><%= favorite.user.name %></td>
+    <td><%= favorite.title %></td>
+    <td><%= favorite.content %></td>
+    <td><%= favorite.image %></td>
+  </tr>
+<% end %>
+</table>
