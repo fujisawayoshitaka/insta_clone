@@ -19,7 +19,11 @@
         <td><%= blog.user.name %></td>
         <td><%= blog.title %></td>
         <td><%= blog.content %></td>
-        <td><%= blog.image %></td>
+        <% if blog.image.blank?%>
+          <td><%= "no image"  %></td>
+        <% else%>
+          <td><%= image_tag(blog.image.url)  %></td>
+        <% end %>
         <td><%= link_to 'Show', blog %></td>
         <% if current_user.id == blog.user.id %>
         <td><%= link_to 'Edit', edit_blog_path(blog) %></td>

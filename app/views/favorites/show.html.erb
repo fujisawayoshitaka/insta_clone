@@ -13,7 +13,7 @@
     <td><%= favorite.user.name %></td>
     <td><%= favorite.title %></td>
     <td><%= favorite.content %></td>
-    <td><%= favorite.image %></td>
+    <td><%= image_tag(favorite.image.url) %></td>
   </tr>
 <% end %>
 </table>

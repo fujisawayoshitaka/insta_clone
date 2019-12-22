@@ -12,7 +12,9 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @blog.image.url %>
+  <% unless @blog.image.blank?%>
+  <td><%= image_tag(@blog.image.url)  %></td>
+  <% end %>
 </p>
 
 <p>
