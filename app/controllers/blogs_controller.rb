@@ -1,10 +1,15 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    if logged_in?
+      @blogs = Blog.all
+    else
+      redirect_to new_session_path , notice: 'loginしてください。'
+    end
+
   end
 
   # GET /blogs/1
@@ -78,5 +83,13 @@ class BlogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
       params.require(:blog).permit(:title, :content, :image, :image_cache)
+    end
+
+    def correct_user
+      blog = Blog.find(params[:id])
+     # belong_toのおかげでnoteオブジェクトからuserオブジェクトへアクセスできる。
+      if current_user.id != blog.user.id
+        redirect_to new_session_path , notice: 'loginしてください。'
+      end
     end
 end

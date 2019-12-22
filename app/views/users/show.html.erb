@@ -5,3 +5,5 @@
 <p>プロフィール写真: <%= image_tag @user.image.url %></p>
 <p><%= link_to "プロフィールを編集する", edit_user_path(@user.id) %></p>
 <p><%= link_to "あなたのお気に入り", favorite_path(@user.id) %></p>
+<p><%= link_to '新しく投稿する', new_blog_path %></p>
+<p><%= link_to 'ブログ一覧を見る。', blogs_path %></p>
