@@ -1,8 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  # GET /blogs
-  # GET /blogs.json
   def index
     if logged_in?
       @blogs = Blog.all
@@ -12,13 +10,10 @@ class BlogsController < ApplicationController
 
   end
 
-  # GET /blogs/1
-  # GET /blogs/1.json
   def show
     @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
-  # GET /blogs/new
   def new
     if logged_in?
       if params[:back]
@@ -30,12 +25,10 @@ class BlogsController < ApplicationController
       redirect_to new_session_path , notice: 'loginしてください。'
    end
  end
-  # GET /blogs/1/edit
+
   def edit
   end
 
-  # POST /blogs
-  # POST /blogs.json
   def create
     @blog = current_user.blogs.build(blog_params)
     respond_to do |format|
@@ -49,8 +42,6 @@ class BlogsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /blogs/1
-  # PATCH/PUT /blogs/1.json
   def update
     respond_to do |format|
       if @blog.update(blog_params)
@@ -67,8 +58,7 @@ class BlogsController < ApplicationController
     @blog = current_user.blogs.build(blog_params)
     render :new if @blog.invalid?
   end
-  # DELETE /blogs/1
-  # DELETE /blogs/1.json
+
   def destroy
     @blog.destroy
     respond_to do |format|
@@ -78,21 +68,20 @@ class BlogsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_blog
-      @blog = Blog.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def blog_params
-      params.require(:blog).permit(:title, :content, :image, :image_cache)
-    end
+  def set_blog
+    @blog = Blog.find(params[:id])
+  end
 
-    def correct_user
-      blog = Blog.find(params[:id])
-     # belong_toのおかげでnoteオブジェクトからuserオブジェクトへアクセスできる。
+
+  def blog_params
+    params.require(:blog).permit(:title, :content, :image, :image_cache)
+  end
+
+  def correct_user
+    blog = Blog.find(params[:id])
       if current_user.id != blog.user.id
         redirect_to new_session_path , notice: 'loginしてください。'
       end
-    end
+  end
 end
