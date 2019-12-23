@@ -3,7 +3,7 @@
 <p>メールアドレス: <%= @user.email %></p>
 
 <p>プロフィール写真: <%= image_tag @user.image.url %></p>
-<p><%= link_to "プロフィールを編集する", edit_user_path(@user.id) %></p>
-<p><%= link_to "あなたのお気に入り", favorite_path(@user.id) %></p>
-<p><%= link_to '新しく投稿する', new_blog_path %></p>
-<p><%= link_to 'ブログ一覧を見る。', blogs_path %></p>
+<p class="label label-primary"><%= link_to "プロフィールを編集する", edit_user_path(@user.id) %></p>
+<p class="label label-danger"><%= link_to "あなたのお気に入り", favorite_path(@user.id) %></p>
+<p class="label label-info"><%= link_to '新しく投稿する', new_blog_path %></p>
+<p class="label label-warning"><%= link_to 'ブログ一覧を見る。', blogs_path %></p>
