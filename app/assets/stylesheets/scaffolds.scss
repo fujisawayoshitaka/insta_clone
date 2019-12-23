@@ -1,6 +1,6 @@
 body {
-  background-color: #fff;
-  color: #333;
+  background-image: url("cable.webp");
+  color: purple;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -81,4 +81,13 @@ div {
 
 label {
   display: block;
+}
+
+.content {
+  text-align:  center;
+}
+
+
+.image {
+  text-align:  center;
 }
