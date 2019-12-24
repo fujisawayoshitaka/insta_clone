@@ -1,8 +1,11 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
-
-<p>プロフィール写真: <%= image_tag @user.image.url %></p>
+<% if @user.image.blank?%>
+  <p>プロフィール写真:<%= "no image"  %></p>
+<% else%>
+  <p>プロフィール写真:<%= image_tag(@user.image.url)  %></p>
+<% end %>
 <p class="label label-primary"><%= link_to "プロフィールを編集する", edit_user_path(@user.id) %></p>
 <p class="label label-danger"><%= link_to "あなたのお気に入り", favorite_path(@user.id) %></p>
 <p class="label label-info"><%= link_to '新しく投稿する', new_blog_path %></p>
