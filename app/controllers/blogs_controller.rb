@@ -30,8 +30,6 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    UserMailer.user_mail(@user).deliver
     @blog = current_user.blogs.build(blog_params)
     respond_to do |format|
       if @blog.save
